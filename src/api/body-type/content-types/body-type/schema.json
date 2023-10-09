@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "body_types",
+  "info": {
+    "singularName": "body-type",
+    "pluralName": "body-types",
+    "displayName": "Body type"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

@@ -41,7 +41,9 @@
       "type": "string"
     },
     "colors": {
-      "type": "string"
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::color.color"
     }
   }
 }

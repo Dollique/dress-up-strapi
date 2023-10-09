@@ -677,6 +677,37 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiBodyTypeBodyType extends Schema.CollectionType {
+  collectionName: 'body_types';
+  info: {
+    singularName: 'body-type';
+    pluralName: 'body-types';
+    displayName: 'Body type';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    image: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::body-type.body-type',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::body-type.body-type',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCategoryCategory extends Schema.CollectionType {
   collectionName: 'categories';
   info: {
@@ -713,6 +744,37 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
 }
 
+export interface ApiColorColor extends Schema.CollectionType {
+  collectionName: 'colors';
+  info: {
+    singularName: 'color';
+    pluralName: 'colors';
+    displayName: 'color';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    hexcode: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::color.color',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::color.color',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiProductProduct extends Schema.CollectionType {
   collectionName: 'products';
   info: {
@@ -735,7 +797,11 @@ export interface ApiProductProduct extends Schema.CollectionType {
     lengths: Attribute.String;
     extras: Attribute.String;
     sizes: Attribute.String;
-    colors: Attribute.String;
+    colors: Attribute.Relation<
+      'api::product.product',
+      'oneToMany',
+      'api::color.color'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -770,7 +836,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::body-type.body-type': ApiBodyTypeBodyType;
       'api::category.category': ApiCategoryCategory;
+      'api::color.color': ApiColorColor;
       'api::product.product': ApiProductProduct;
     }
   }
