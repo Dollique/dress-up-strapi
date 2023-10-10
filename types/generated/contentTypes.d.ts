@@ -726,6 +726,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'oneToOne',
       'api::category.category'
     >;
+    title: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
